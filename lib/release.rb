@@ -16,12 +16,21 @@ class Release
     response.body.tag_name
   end
 
-  def note(pr_number)
-    response = github.pull_requests.get(organization, repository, pr_number)
-    response.body.body
+  def release_note(pr_number)
+    body = note(pr_number)
+    parse(body)
   end
 
   private
 
   attr_reader :github, :organization, :repository
+
+  def note(pr_number)
+    response = github.pull_requests.get(organization, repository, pr_number)
+    response.body.body
+  end
+
+  def parse(body)
+    /#### Release notes\s+(.+)/.match(body)[1]
+  end
 end

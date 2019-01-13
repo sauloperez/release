@@ -13,7 +13,7 @@ RSpec.describe Release do
     end
   end
 
-  describe '#note' do
+  describe '#release_note' do
     it 'returns the release note of a pull request' do
       text = <<-TEXT
 Some description
@@ -27,7 +27,7 @@ TEXT
       stub_request(:get, "#{API_URL}/pulls/1")
         .to_return(body: response_body.to_json)
 
-      expect(release.note(1)).to eq(response_body[:body])
+      expect(release.release_note(1)).to eq('A note')
     end
   end
 end
