@@ -7,9 +7,9 @@ class Release
     @github = Github.new
   end
 
-  def call
+  def last_release_version
     response = github.repos.releases.latest(organization, repository)
-    response.body.name
+    response.body.tag_name
   end
 
   private
