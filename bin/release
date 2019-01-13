@@ -1,0 +1,6 @@
+require './lib/release'
+
+puts Release.new(
+   GITHUB_OFN_ORGANIZATION,
+   GITHUB_OFN_REPOSITORY
+).last_release_version
