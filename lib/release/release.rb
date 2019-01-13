@@ -1,10 +1,13 @@
 require 'pry'
 require 'github_api'
 
+require './lib/release/note_parser'
+
 class Release
-  def initialize(organization, repository)
+  def initialize(organization, repository, note_parser = NoteParser.new)
     @organization = organization
     @repository = repository
+    @note_parser = note_parser
 
     @github = Github.new do |config|
       config.oauth_token = ENV['GITHUB_ACCESS_TOKEN']
@@ -23,7 +26,7 @@ class Release
 
   private
 
-  attr_reader :github, :organization, :repository
+  attr_reader :github, :organization, :repository, :note_parser
 
   def note(pr_number)
     response = github.pull_requests.get(organization, repository, pr_number)
@@ -31,6 +34,6 @@ class Release
   end
 
   def parse(body)
-    /#### Release notes\s+(.+)/.match(body)[1]
+    note_parser.parse(body)
   end
 end

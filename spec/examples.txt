@@ -1,4 +1,4 @@
 example_id                    | status | run_time        |
 ----------------------------- | ------ | --------------- |
-./spec/release_spec.rb[1:1:1] | passed | 0.00498 seconds |
-./spec/release_spec.rb[1:2:1] | passed | 0.00554 seconds |
+./spec/release_spec.rb[1:1:1] | passed | 0.00546 seconds |
+./spec/release_spec.rb[1:2:1] | passed | 0.00436 seconds |
