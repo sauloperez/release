@@ -1,8 +1,8 @@
-require './lib/release'
+require './lib/release/release'
 require './spec/spec_helper'
 
 RSpec.describe Release do
-  let(:release) { described_class.new }
+  let(:release) { described_class.new(GITHUB_OFN_ORGANIZATION, GITHUB_OFN_REPOSITORY) }
 
   describe '#last_release_version' do
     it 'returns the name of the latest release' do
