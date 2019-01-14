@@ -1,8 +1,9 @@
-class NoteParser
+class MarkdownNoteParser
   HEADER = '#### Release notes'.freeze
 
   def parse(body)
-    /#{HEADER}\s+(.+)/.match(body)[1]
+    match = /#{HEADER}\s+(.+)/.match(body)
+    match[1] if match
   end
 
   private

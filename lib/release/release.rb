@@ -1,10 +1,10 @@
 require 'pry'
 require 'github_api'
 
-require './lib/release/note_parser'
+require './lib/release/markdown_note_parser'
 
 class Release
-  def initialize(organization, repository, note_parser = NoteParser.new)
+  def initialize(organization, repository, note_parser = MarkdownNoteParser.new)
     @organization = organization
     @repository = repository
     @note_parser = note_parser
