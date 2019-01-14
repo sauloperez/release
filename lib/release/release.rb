@@ -24,6 +24,11 @@ class Release
     parse(body)
   end
 
+  def pull_requests(since:)
+    response = github.search.issues("is:pr repo:#{GITHUB_OFN_ORGANIZATION}/#{GITHUB_OFN_REPOSITORY} merged:>2019-01-10")
+    response.body.items.map(&:number)
+  end
+
   private
 
   attr_reader :github, :organization, :repository, :note_parser
