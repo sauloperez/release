@@ -51,7 +51,7 @@ A note
         stub_request(:get, 'https://api.github.com/search/issues?q=is:pr%20repo:openfoodfoundation/openfoodnetwork%20merged:%3E2019-01-10')
           .to_return(status: 200, body: response_body, headers: {})
 
-        expect(release.pull_requests(since: Time.now)).to eq([3280, 3115, 3072])
+        expect(release.pull_requests(since: '2019-01-10')).to eq([3280, 3115, 3072])
       end
     end
   end
