@@ -40,7 +40,6 @@ A note
 
     context 'when since argument is passed' do
       it 'returns the numbers of the pull requests' do
-        pr_path = 'https://github.com/openfoodfoundation/openfoodnetwork/pull/'
         response_body = {
           items: [
             { html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3280' },
