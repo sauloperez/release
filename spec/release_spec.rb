@@ -40,18 +40,25 @@ A note
 
     context 'when since argument is passed' do
       it 'returns the numbers of the pull requests' do
+        pr_path = 'https://github.com/openfoodfoundation/openfoodnetwork/pull/'
         response_body = {
           items: [
-            { number: 3280 },
-            { number: 3115 },
-            { number: 3072 }
+            { html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3280' },
+            { html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3115' },
+            { html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3072' }
           ]
         }.to_json
 
         stub_request(:get, 'https://api.github.com/search/issues?q=is:pr%20repo:openfoodfoundation/openfoodnetwork%20merged:%3E2019-01-10')
           .to_return(status: 200, body: response_body, headers: {})
 
-        expect(release.pull_requests(since: '2019-01-10')).to eq([3280, 3115, 3072])
+        expect(release.pull_requests(since: '2019-01-10')).to eq(
+          [
+            'https://github.com/openfoodfoundation/openfoodnetwork/pull/3280',
+            'https://github.com/openfoodfoundation/openfoodnetwork/pull/3115',
+            'https://github.com/openfoodfoundation/openfoodnetwork/pull/3072'
+          ]
+        )
       end
     end
   end

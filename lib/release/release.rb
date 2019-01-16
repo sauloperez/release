@@ -26,7 +26,7 @@ class Release
 
   def pull_requests(since:)
     pull_requests = PullRequests.new(github, organization, repository)
-    pull_requests.get(since).map(&:number)
+    pull_requests.get(since).map(&:html_url)
   end
 
   private
