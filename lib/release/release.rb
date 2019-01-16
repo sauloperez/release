@@ -15,8 +15,8 @@ class Release
   end
 
   def last_release_version
-    response = github.repos.releases.latest(organization, repository)
-    response.body.tag_name
+    latest_release = LatestRelease.new(github, organization, repository)
+    latest_release.tag_name
   end
 
   def release_note(pr_number)
