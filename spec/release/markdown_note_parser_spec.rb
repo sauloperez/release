@@ -1,5 +1,4 @@
 require './spec/spec_helper'
-require './lib/release/markdown_note_parser'
 
 RSpec.describe MarkdownNoteParser do
   let(:markdown_note_parser) { described_class.new }

@@ -1,4 +1,4 @@
-require './lib/release/release'
+require './lib/release'
 require './spec/spec_helper'
 
 RSpec.describe Release do

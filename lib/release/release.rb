@@ -25,8 +25,8 @@ class Release
   end
 
   def pull_requests(since:)
-    response = github.search.issues("is:pr repo:#{GITHUB_OFN_ORGANIZATION}/#{GITHUB_OFN_REPOSITORY} merged:>#{since}")
-    response.body.items.map(&:number)
+    pull_requests = PullRequests.new(github, organization, repository)
+    pull_requests.get(since).map(&:number)
   end
 
   private
