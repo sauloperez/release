@@ -27,7 +27,6 @@ module Release
 
     def pull_requests(since:)
       pull_requests = PullRequests.new(github, organization, repository)
-      Summary.new
       pull_requests.get(since).map(&:html_url)
     end
 

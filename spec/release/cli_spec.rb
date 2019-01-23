@@ -1,7 +1,7 @@
 require './lib/release'
 require './spec/spec_helper'
 
-RSpec.describe Release do
+RSpec.describe Release::CLI do
   let(:release) { described_class.new(GITHUB_OFN_ORGANIZATION, GITHUB_OFN_REPOSITORY) }
 
   describe '#last_release_version' do

@@ -2,7 +2,7 @@
 
 require './lib/release'
 
-puts Release.new(
-   GITHUB_OFN_ORGANIZATION,
-   GITHUB_OFN_REPOSITORY
+puts Release::CLI.new(
+  GITHUB_OFN_ORGANIZATION,
+  GITHUB_OFN_REPOSITORY
 ).pull_requests(since: ARGV[0])
