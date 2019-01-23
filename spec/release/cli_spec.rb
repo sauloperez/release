@@ -42,20 +42,32 @@ A note
       it 'returns the numbers of the pull requests' do
         response_body = {
           items: [
-            { html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3280' },
-            { html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3115' },
-            { html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3072' }
+            {
+              html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3280',
+              number: 3280
+            },
+            {
+              html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3115',
+              number: 3115
+            },
+            {
+              html_url: 'https://github.com/openfoodfoundation/openfoodnetwork/pull/3072',
+              number: 3072
+            }
           ]
         }.to_json
+
+        stub_request(:get, "https://api.github.com/repos/openfoodfoundation/openfoodnetwork/pulls/3280")
+          .to_return(status: 200, body: "", headers: {})
 
         stub_request(:get, 'https://api.github.com/search/issues?q=is:pr%20repo:openfoodfoundation/openfoodnetwork%20merged:%3E2019-01-10')
           .to_return(status: 200, body: response_body, headers: {})
 
         expect(release.pull_requests(since: '2019-01-10')).to eq(
           [
-            'https://github.com/openfoodfoundation/openfoodnetwork/pull/3280',
-            'https://github.com/openfoodfoundation/openfoodnetwork/pull/3115',
-            'https://github.com/openfoodfoundation/openfoodnetwork/pull/3072'
+            "https://github.com/openfoodfoundation/openfoodnetwork/pull/3280\nRelease note of 3280",
+            "https://github.com/openfoodfoundation/openfoodnetwork/pull/3115\nRelease note of 3115",
+            "https://github.com/openfoodfoundation/openfoodnetwork/pull/3072\nRelease note of 3072"
           ]
         )
       end
